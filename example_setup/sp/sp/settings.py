@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 # See their docs for explanation of all options.
 
 import saml2  # noqa
-from saml2.saml import NAMEID_FORMAT_EMAILADDRESS  # noqa
+from saml2.saml import NAMEID_FORMAT_EMAILADDRESS,NAMEID_FORMAT_UNSPECIFIED  # noqa
 from saml2.sigver import get_xmlsec_binary  # noqa
 
 AUTHENTICATION_BACKENDS = (
@@ -159,7 +159,7 @@ SAML_CONFIG = {
                     ('http://localhost:8001/saml2/ls/post/', saml2.BINDING_HTTP_POST),
                 ],
             },
-            'name_id_format': [NAMEID_FORMAT_EMAILADDRESS],
+            'name_id_format': [NAMEID_FORMAT_UNSPECIFIED],
             'authn_requests_signed': True,
             'want_response_signed': True,
             'want_assertions_signed': True,

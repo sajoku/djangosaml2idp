@@ -190,7 +190,7 @@ SAML_IDP_CONFIG = {
                     ("http://localhost:9000/idp/slo/redirect/", saml2.BINDING_HTTP_REDIRECT)
                 ],
             },
-            'name_id_format': [NAMEID_FORMAT_EMAILADDRESS, NAMEID_FORMAT_UNSPECIFIED],
+            'name_id_format': [NAMEID_FORMAT_UNSPECIFIED],
             'sign_response': True,
             'sign_assertion': True,
             'want_authn_requests_signed': True,
