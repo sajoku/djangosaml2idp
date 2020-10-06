@@ -11,7 +11,7 @@ services:
       - ./sp:/app
     working_dir: /app
     ports:
-      - "8000:8000"
+      - "8001:8001"
 
   idp:
     restart: always
