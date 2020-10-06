@@ -12,23 +12,36 @@ The example will run equally on Mac/Windows/Linux using docker.
 How to run
 ----------
 
+Navigate to the example_project folder in a terminal and run::
+
+    docker-compose build
+
+The above is only needed on the first run as it will download and build the
+containers.
+
 Go to this folder in a terminal and start the containers::
+
 
     docker-compose up -d
 
-Give it a minute the first time to download and build the required images. They'll be cached for successive runs.
+Give it a minute the first time to download and build the required images.
+They'll be cached for successive runs.
 You now have a SP running at http://localhost:8000/ and a IdP at http://localhost:9000/ (you can check your containers using :code:`docker-compose ps`), configured to talk with each other.
-In order to do an actual login, you will need to create a user account on the IdP. Run this in a terminal with your containers running to create a new user:
+In order to do an actual login, you will need to create a user account on the IdP. Run this in a terminal with your containers running to create a new user::
 
     docker exec -it djangosaml2idp_idp python manage.py createsuperuser
 
-If you don't want to use docker, simply do in a terminal from the idp directory
+The createsuperuser will create an admin user in the IDP app based on your
+input.
+
+If you don't want to use docker, simply do in a terminal from the idp
+directory::
 
     pip install -r requirements.txt
 
     python manage.py migrate
 
-    python manage.py runserver 0.0.0.0:9000 (8000 for the SP) in a terminal
+    python manage.py runserver 0.0.0.0:8000 (8001 for the SP) in a terminal
 
 How to use
 ----------
@@ -38,15 +51,15 @@ There are two flows illustrated with this demo:
 
 
 1. SP-initiated login
-    - Go to the `SP <http://localhost:8000/>`_ in your browser and verify you are not logged in.
+    - Go to the `SP <http://localhost:8001/>`_ in your browser and verify you are not logged in.
     - Click on the login link. You'll get redirected to a login form on the IdP instance.
     - Log in with your credentials from the user you just created. You get redirected back to the SP instance.
     - You are now logged in on the SP. The page shows the user information stemming from the IdP.
 
 
 2. IDP-initiated login
-    - Go to the `SP <http://localhost:8000/>`_ in your browser and verify you are not logged in.
-    - Go to the `IDP <http://localhost:9000/>`_ in your browser. You are not logged in.
+    - Go to the `SP <http://localhost:8001/>`_ in your browser and verify you are not logged in.
+    - Go to the `IDP <http://localhost:8000/>`_ in your browser. You are not logged in.
     - Click on the login link. You'll get redirected to a login form on the IdP instance.
     - Log in with your credentials from the user you just created. You get back to the IDP landing page, but now you are logged in.
     - Click the link on the bottom saying "Perform IDP-initiated login ...".
